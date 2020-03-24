@@ -7,7 +7,13 @@ const userList = document.getElementById("users");
 const username = prompt("Please enter your name", "Anonymous");
 const channel = prompt("Please enter channel to join", "General");
 
-const socket = io("https://websocket-chat.now.sh/");
+const socket = io();
+
+var socket = io.connect();
+console.log("check 1", socket.connected);
+socket.on("connect", function() {
+  console.log("check 2", socket.connected);
+});
 
 // Join chatroom
 socket.emit("joinChannel", { username, channel });
