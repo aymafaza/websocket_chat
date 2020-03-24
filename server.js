@@ -77,6 +77,8 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-server.listen(3000, () => {
-  console.log("listening on *:3000");
+const PORT = 3000 || process.env.PORT;
+
+server.listen(PORT, () => {
+  console.log(`listening on *:${PORT}`);
 });
