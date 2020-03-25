@@ -46,9 +46,11 @@ socketio.on("connection", socket => {
     const user = getCurrentUser(socket.id);
 
     console.log("message: " + msg);
-    socketio
-      .to(user.channel)
-      .emit("message", formatMessage(user.username, msg));
+    if (user) {
+      socketio
+        .to(user.channel)
+        .emit("message", formatMessage(user.username, msg));
+    }
   });
 
   socket.on("disconnect", () => {
