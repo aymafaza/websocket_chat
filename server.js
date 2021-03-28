@@ -14,7 +14,7 @@ const {
 const app = express();
 const server = http.createServer(app);
 const socketio = socket(server);
-const botName = "Cosmo Bot";
+const botName = "Hallo Bot";
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
@@ -25,14 +25,14 @@ socketio.on("connection", socket => {
     socket.join(user.channel);
 
     // Welcome current user
-    socket.emit("message", formatMessage(botName, "Welcome to SocketChat"));
+    socket.emit("message", formatMessage(botName, "Selamat datang di Hallo Chat ^^"));
 
     // This will emit the event to all connected sockets
     socket.broadcast
       .to(user.channel)
       .emit(
         "message",
-        formatMessage(botName, `${user.username} has joined the channel`)
+        formatMessage(botName, `${user.username} telah bergabung dalam channel`)
       );
 
     // Send users and room info
@@ -62,7 +62,7 @@ socketio.on("connection", socket => {
         .to(user.channel)
         .emit(
           "message",
-          formatMessage(botName, `${user.username} has leave the channel!`)
+          formatMessage(botName, `${user.username} telah meninggalkan channel!`)
         );
 
       // Send users and room info
